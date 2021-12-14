@@ -300,8 +300,7 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     mySprite.startEffect(effects.fire, 200)
-    info.player2.changeLifeBy(-1)
-    pause(2000)
+    statusbar.value += -20
 })
 function Setup () {
     scene.setBackgroundImage(img`
@@ -484,20 +483,21 @@ function Setup () {
     projectile.setStayInScreen(true)
     controller.moveSprite(mySprite)
     controller.player2.moveSprite(projectile)
-    info.setLife(3)
-    info.player2.setLife(3)
     game.splash("FIGHT!!!")
     statusbar = statusbars.create(20, 4, StatusBarKind.Health)
     statusbar2 = statusbars.create(20, 4, StatusBarKind.Health)
     statusbar.attachToSprite(mySprite)
     statusbar2.attachToSprite(projectile)
+    statusbar.value = 100
+    statusbar2.value = 100
+    statusbar.setLabel("HP")
+    statusbar2.setLabel("HP")
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     projectile.startEffect(effects.blizzard, 200)
-    info.changeLifeBy(-1)
-    pause(200)
-    while (info.life() == 0) {
-        game.over(false)
+    statusbar2.value += -20
+    while (statusbar.value == 0) {
+    	
     }
 })
 let statusbar2: StatusBarSprite = null
