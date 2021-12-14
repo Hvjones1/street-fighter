@@ -1,6 +1,6 @@
 controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite,
+    projectile,
     [img`
         ........................
         ........................
@@ -502,6 +502,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let statusbar2: StatusBarSprite = null
 let statusbar: StatusBarSprite = null
-let projectile: Sprite = null
 let mySprite: Sprite = null
+let projectile: Sprite = null
 Setup()
