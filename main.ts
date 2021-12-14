@@ -239,9 +239,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    if (true) {
-    	
-    }
 })
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -490,6 +487,10 @@ function Setup () {
     info.setLife(3)
     info.player2.setLife(3)
     game.splash("FIGHT!!!")
+    statusbar = statusbars.create(20, 4, StatusBarKind.Health)
+    statusbar2 = statusbars.create(20, 4, StatusBarKind.Health)
+    statusbar.attachToSprite(mySprite)
+    statusbar2.attachToSprite(projectile)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     projectile.startEffect(effects.blizzard, 200)
@@ -499,6 +500,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         game.over(false)
     }
 })
+let statusbar2: StatusBarSprite = null
+let statusbar: StatusBarSprite = null
 let projectile: Sprite = null
 let mySprite: Sprite = null
 Setup()
