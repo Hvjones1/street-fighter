@@ -173,7 +173,7 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     mySprite.startEffect(effects.fire, 200)
     info.player2.changeLifeBy(-1)
-    pause(200)
+    pause(2000)
 })
 function Setup () {
     scene.setBackgroundImage(img`
