@@ -298,9 +298,14 @@ controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
     false
     )
 })
+statusbars.onZero(StatusBarKind.Health, function (status) {
+    game.splash("You Win" + "")
+    effects.confetti.startScreenEffect()
+})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     mySprite.startEffect(effects.fire, 200)
     statusbar.value += -20
+    pause(1000)
 })
 function Setup () {
     scene.setBackgroundImage(img`
@@ -425,6 +430,8 @@ function Setup () {
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
         `)
+    mySprite2 = game.askForString("What is Player 1's name?", 12)
+    Mysprite3 = game.askForString("What is Player 2's name?", 12)
     mySprite = sprites.create(img`
         ........................
         ....ffffff..............
@@ -492,15 +499,21 @@ function Setup () {
     statusbar2.value = 100
     statusbar.setLabel("HP")
     statusbar2.setLabel("HP")
+    if (statusbar < statusbar2) {
+        game.splash("Player 2 you Lose!")
+    }
+    if (statusbar > statusbar2) {
+        game.splash("Player 1 you Lose!")
+    }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     projectile.startEffect(effects.blizzard, 200)
+    pause(1000)
     statusbar2.value += -20
-    while (statusbar.value == 0) {
-    	
-    }
 })
 let statusbar2: StatusBarSprite = null
+let Mysprite3 = ""
+let mySprite2 = ""
 let statusbar: StatusBarSprite = null
 let mySprite: Sprite = null
 let projectile: Sprite = null
