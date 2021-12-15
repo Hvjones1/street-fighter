@@ -304,8 +304,12 @@ statusbars.onZero(StatusBarKind.Health, function (status) {
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     mySprite.startEffect(effects.fire, 200)
-    statusbar.value += -20
     pause(1000)
+    statusbar.value += -20
+    if (statusbar < statusbar2) {
+        effects.confetti.startScreenEffect()
+        game.splash("Player 2 you Lose!")
+    }
 })
 function Setup () {
     scene.setBackgroundImage(img`
@@ -497,19 +501,15 @@ function Setup () {
     statusbar2.value = 100
     statusbar.setLabel("HP")
     statusbar2.setLabel("HP")
-    if (statusbar < statusbar2) {
-        effects.confetti.startScreenEffect()
-        game.splash("Player 2 you Lose!")
-    }
-    if (statusbar > statusbar2) {
-        effects.confetti.startScreenEffect()
-        game.splash("Player 1 you Lose!")
-    }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     projectile.startEffect(effects.blizzard, 200)
     pause(1000)
     statusbar2.value += -20
+    if (statusbar > statusbar2) {
+        effects.confetti.startScreenEffect()
+        game.splash("Player 1 you Lose!")
+    }
 })
 let statusbar2: StatusBarSprite = null
 let statusbar: StatusBarSprite = null
