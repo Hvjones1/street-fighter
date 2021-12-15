@@ -1,4 +1,7 @@
 controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
+    if (true) {
+        statusbar2.value += 0
+    }
     animation.runImageAnimation(
     projectile,
     [img`
@@ -57,6 +60,9 @@ controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Press
     )
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (true) {
+        statusbar.value += 0
+    }
     animation.runImageAnimation(
     mySprite,
     [img`
@@ -511,8 +517,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         game.splash("Player 1 you Lose!")
     }
 })
-let statusbar2: StatusBarSprite = null
-let statusbar: StatusBarSprite = null
 let mySprite: Sprite = null
 let projectile: Sprite = null
+let statusbar2: StatusBarSprite = null
+let statusbar: StatusBarSprite = null
 Setup()
+if (statusbar == statusbar2) {
+    effects.confetti.startScreenEffect()
+    game.splash("You both suck!!")
+}
